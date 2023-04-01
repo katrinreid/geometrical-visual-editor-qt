@@ -9,7 +9,7 @@ Rational::Rational(int64_t num, int64_t denom) : num_(num), denom_(denom) {
         this->num_ = -std::abs(num);
         this->denom_ = std::abs(denom);
     }
-    simplify();
+    reduction();
 }
 
 Rational::Rational(int64_t num) : num_(num), denom_(1) {}
