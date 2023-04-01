@@ -1,1 +1,0 @@
-add_library(rational_library rational_lib.cpp rational_lib.hpp)
