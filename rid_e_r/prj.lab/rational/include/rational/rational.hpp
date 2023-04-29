@@ -1,5 +1,5 @@
-#ifndef OOP_2SEM_RID_E_R_PRJLAB_RATIONAL_INCLUDE_RATIONAL_RATIONAL_HPP
-#define OOP_2SEM_RID_E_R_PRJLAB_RATIONAL_INCLUDE_RATIONAL_RATIONAL_HPP
+#ifndef OOPSEM2_ISUPOV_G_S_PRJLAB_RATIONAL_INCLUDE_RATIONAL_RATIONAL_HPP
+#define OOPSEM2_ISUPOV_G_S_PRJLAB_RATIONAL_INCLUDE_RATIONAL_RATIONAL_HPP
 
 #include <iosfwd>
 #include <stdexcept>
@@ -59,7 +59,7 @@ private:
     int64_t num_ = 1;
     int64_t denom_ = 1;
 
-    void reduction();
+    void simplify();
 };
 
 Rational operator-(const Rational& r);

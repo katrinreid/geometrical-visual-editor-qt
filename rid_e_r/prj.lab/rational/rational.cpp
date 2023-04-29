@@ -9,7 +9,7 @@ Rational::Rational(int64_t num, int64_t denom) : num_(num), denom_(denom) {
         this->num_ = -std::abs(num);
         this->denom_ = std::abs(denom);
     }
-    reduction();
+    simplify();
 }
 
 Rational::Rational(int64_t num) : num_(num), denom_(1) {}
@@ -25,7 +25,7 @@ int64_t gcd(int64_t a, int64_t b) {
     return b;
 }
 
-void Rational::reduction() {
+void Rational::simplify() {
     int64_t localGCD = denom_;
     if (num_ != 0) {
         localGCD = gcd(num_, denom_);
@@ -44,9 +44,11 @@ Rational& Rational::operator+=(const Rational& r) {
     num_ *= lmc / denom_;
     denom_ *= lmc / denom_;
 
+    // Почему могу обращаться к r.num_, хотя он private?
+//    this->num_ += r.num_ * lmc / r.denom_;
     num_ += r.num() * lmc / r.denom();
 
-    reduction();
+    simplify();
     return *this;
 }
 
@@ -70,7 +72,7 @@ Rational operator-(const Rational& l, const Rational& r) {
 Rational& Rational::operator*=(const Rational& r) {
     this->num_ *= r.num();
     this->denom_ *= r.denom();
-    reduction();
+    simplify();
     return *this;
 }
 
@@ -87,7 +89,7 @@ Rational& Rational::operator/=(const Rational& r) {
 
     this->num_ *= r.denom();
     this->denom_ *= r.num();
-    reduction();
+    simplify();
     return *this;
 }
 
@@ -104,6 +106,7 @@ Rational& Rational::operator++() {
 
 Rational Rational::operator++(int) {
     Rational temp(*this);
+    // do something
     ++*this;
     return temp;
 }
@@ -115,6 +118,7 @@ Rational& Rational::operator--() {
 
 Rational Rational::operator--(int) {
     Rational temp(*this);
+    // do something
     --*this;
     return temp;
 }
@@ -165,7 +169,7 @@ std::istream& Rational::ReadFrom(std::istream& istream) {
         } else {
             num_ = numI;
             denom_ = denomI;
-            reduction();
+            simplify();
         }
     }
     return istream;

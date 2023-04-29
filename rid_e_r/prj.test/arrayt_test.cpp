@@ -82,6 +82,12 @@ TEST_CASE("remove") {
         REQUIRE(arr.ssize() == 3);
     }
 
+    /*SUBCASE("remove from empty array") {
+        ArrayD emptyArr(0);
+        REQUIRE_THROWS_AS(emptyArr.remove(0), std::invalid_argument);
+        REQUIRE(emptyArr.ssize() == 0);
+    }*/
+
     SUBCASE("remove from single element array") {
         ArrayT singleArr(1);
         singleArr[0] = 1.0;
