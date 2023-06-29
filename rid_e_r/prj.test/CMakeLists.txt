@@ -14,3 +14,7 @@ add_executable(matrixs_test matrixs_test.cpp)
 target_link_libraries(matrixs_test matrixs doctest::doctest)
 add_test(NAME matrixs_test COMMAND matrixs_test)
 
+add_executable(paint_t paint_test.cpp)
+target_link_libraries(paint_t PRIVATE paint Qt${QT_VERSION_MAJOR}::Widgets)
+
+
